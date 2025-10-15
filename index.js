@@ -15,7 +15,7 @@ const app = express();
 
 // CORS Configuration - Frontend se requests allow karne ke liye
 const corsOptions = {
-  origin: 'http://localhost:5173', // Your frontend URL
+  origin: ['http://localhost:5173','https://opus-com.netlify.app'], // Your frontend URL
   credentials: true,
   optionsSuccessStatus: 200
 };
