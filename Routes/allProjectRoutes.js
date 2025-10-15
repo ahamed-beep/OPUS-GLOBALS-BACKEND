@@ -1,6 +1,6 @@
 import express from 'express';
-import { updateUserPassword, userControllers, userLogin } from '../Controllers/userControllers.js';
-import { AdminCreatedUserLogin, AdminUserControllers } from '../Controllers/adminController.js';
+import {  getUserData, unifiedLogin, updateUserPassword, userControllers, verifyToken } from '../Controllers/userControllers.js';
+import { AdminUserControllers } from '../Controllers/adminController.js';
 
 const router = express.Router();
 
@@ -8,11 +8,15 @@ const router = express.Router();
 // All routes here is for usermodel
 router.post('/createuser', userControllers);
 router.put('/update/:id', updateUserPassword);
-router.post('/userlogin', userLogin);
+router.post('/login', unifiedLogin);
+
+
+router.get('/user-data', verifyToken, getUserData);
 
 // All routes here is for admincreatemodel
 router.post('/admincreateuser', AdminUserControllers);
-router.post('/userlog', AdminCreatedUserLogin);
+
+
 
 
 

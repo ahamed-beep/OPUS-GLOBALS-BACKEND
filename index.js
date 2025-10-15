@@ -4,6 +4,7 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import mongoDbconnection from './MongoDbConnection/mongoDbConnection.js';
 import router from './Routes/allProjectRoutes.js';
 
@@ -11,12 +12,21 @@ dotenv.config();
 mongoDbconnection();
 
 const app = express(); 
+
+// CORS Configuration - Frontend se requests allow karne ke liye
+const corsOptions = {
+  origin: 'http://localhost:5173', // Your frontend URL
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); 
 app.use('/api', router); 
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
-})
-
+});
 
 const port = process.env.PORT;
 
